@@ -1,0 +1,16 @@
+[★★★] Suspect tracking - Golden Hour 
+
+3 Úloha
+
+EN: !!WARNING: The number of flag submission attempts is limited to 10 !! Good work! We have managed to identify the location with an accuracy down to a few centimeters. We know where the photograph in question was taken and likely also the time it was captured.
+Can we determine the exact date when the photograph was taken based on the image? The flag should be in the format "MMDD", e.g., if it was taken on February 14th, the flag would be "0214". 
+!!WARNING: The number of flag submission attempts is limited to 10 !!
+
+SK: !!VAROVANIE: Počet pokusov o odoslanie vlajky je obmedzený na 10 !! Výborne odvedená práca! Podarilo sa nám identifikovať lokalitu s presnosťou na niekoľko centimetrov. Vieme, kde bola daná fotografia odfotená a pravdepodobne aj kedy bola zachytená.
+Dokážeme určiť presný dátum, kedy bola fotografia odfotená, na základe obrázka? Vlajka by mala byť vo formáte "MMDD", napríklad, ak bola odfotená 14. februára, vlajka by bola "0214".
+!!VAROVANIE: Počet pokusov o odoslanie vlajky je obmedzený na 10 !!
+
+
+Riešenie:
+Odrážame sa z rovnakého obrázku, kde je vidieť západ slnka a čas kedy bola fotka vytvorená. Z predchádzajúcich úloh, kde som skúšal všeličo som sa dostal k stránke suncalc.org, pomocou ktorej sa dá určiť poloha slnka pri korelácií s obrázkom.
+Zadal som súradnice, ktoré som zistil z predchádzajúcej úlohy aby som mal úplne presnú polohu a následne som pozeral dátumy, kedy je poloha slnka v dráhe ako je na fotke. Po vyskúšaní niekoľkých pokusov, som zistil, že je to dátum a zároveň aj správna odpoveď: "0130"
