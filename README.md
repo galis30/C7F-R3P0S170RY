@@ -1,2 +1,3 @@
 # CTF_CYBERGAME_2025
-CTF Event
+
+Toto slúži ako edukačný materiál k cft cybergame z roku 2025.
