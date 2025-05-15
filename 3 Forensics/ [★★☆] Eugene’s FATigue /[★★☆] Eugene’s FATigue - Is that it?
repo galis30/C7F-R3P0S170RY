@@ -1,1 +1,17 @@
+Úloha 2
 
+EN: You can’t believe your eyes. Gene was more secretive than you can imagine. Can you recover the hidden stash of wisdom?
+
+SK: Nemôžeš uveriť vlastným očiam. Gene bol tajomnejší, než si dokážeš predstaviť. Dokážeš získať späť skrytý poklad múdrosti?
+
+
+Riešenie:
+Použil som binwalk, ten mi extrahoval zložku output, kde bolo niekoľko ďalších súborov. Ako prvý som začal analyzovať PDF súbor.
+Opäť som použil príkaz strings. Bolo tam vidieť niekoľko zaujímavých stringov a medzi nimi aj:
+_^@VuwtuTeEEf9uthkAwc1_zzpRq9x4c/LV0TOw5x6a_U0stQ0VSVHs3aDFzX1dBU18xN19hZnRlcl9hbGx9$EucR/FqMoVaZvjx3OvGT_EV4u/Y7EDwDeA/w9QO3+^ALYXhvTD3R1JcGJUgKFi_mhzkezdqaIHzm261y9IQ_EV4u/Y7EDwDeA/w9QO3+
+
+Miestami to vyzeralo byť šifrované base64, tak som vytiahol najdlhší string z tejto časti
+U0stQ0VSVHs3aDFzX1dBU18xN19hZnRlcl9hbGx9
+
+Následne som sa dostal k vlajke:
+SK-CERT{7h1s_WAS_17_after_all}
