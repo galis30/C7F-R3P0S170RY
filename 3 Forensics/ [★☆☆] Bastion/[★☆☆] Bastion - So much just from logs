@@ -8,7 +8,7 @@ Skontrolujte, či sa bol systém kompromitovaný.
 
 
 Riešenie:
-- Rozbalil som si všetky auth logy
+- Rozbalil som si všetky auth logy (part1_toolbox_logs.tar.gz)
 - Následne som pomocou grep hľadal čo ma zaujíma vo všetkých auth logoch, napríklad takto:
 grep "Accepted" auth.log*
 grep "sudo" auth.log*
