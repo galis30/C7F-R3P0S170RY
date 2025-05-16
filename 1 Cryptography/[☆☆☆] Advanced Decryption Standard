@@ -1,1 +1,37 @@
+1. 
+SK: Poznáš ten pocit—prebudíš sa po divokej noci gamblingu, vrecká plné kľúčov o ktorých si si istý že sú tvoje, ale akosi každý jeden nie je ten pravý, a za ten svet si nevieš spomenúť, ktorý pasuje kam, alebo čo vlastne mal odomykať?
 
+Teraz si predstav, že si začínajúci kryptológ po tej istej noci. Máš kľúče—jasne—ale ani šajnu čo odomykajú, ako fungujú, alebo prečo ich vôbec máš. Vitaj v kryptografickej rannej opici.
+
+Zdá sa ti, že tento súbor by mal obsahovať vlajku šifrovanú pomocou... AES? V mysli sa vynárajú aj písmenká ECB, hoci vôbec netušíš čo to je. Vlajka by mala byť v obvyklom formáte SK-CERT{niečo}.
+
+kľúč (hex format): 00000000000000000000000000000000
+
+Cyberchef, vlozit subor ako input, pouzit AES Decrypt:
+Key: 00000000000000000000000000000000 (HEX), Input Raw, Mode ECB
+
+SK-CERT{f1r57_15_3cb}
+
+
+2.
+SK: Za ten svet si nedokážeš spomenúť, prečo si na každú vlajku použil inú metódu zreťazenia. To musela byť pekelná noc...
+
+Tento súbor obsahuje vlajku zašifrovanú AES s módom CBC.
+
+kľúč (hex format): 00000000000000000000000000000000 iv (hex format): 01020304050607080102030405060708
+
+Cyberchef, vlozit subor ako input, pouzit AES Decrypt:
+Key: 00000000000000000000000000000000 (HEX), Input Raw, Mode CBC, IV 01020304050607080102030405060708
+
+SK-CERT{cbc_m0d3_15_n3x7}
+
+
+3.
+SK: Matematika tejto veci ti uniká, ale skrátka vieš, že tento súbor obsahuje tretí flag, zašifrovaný pomocou AES s módom CTR (counter).
+
+kľúč (hex format): 11111111111111111111111111111111 iv (hex format): 99999999999999999999999999999999
+
+Cyberchef, vlozit subor ako input, pouzit AES Decrypt:
+Key: 11111111111111111111111111111111 (HEX), Input Raw, Mode CTR, IV 99999999999999999999999999999999
+
+SK-CERT{4nd_7h3_l457_15_c7r}
