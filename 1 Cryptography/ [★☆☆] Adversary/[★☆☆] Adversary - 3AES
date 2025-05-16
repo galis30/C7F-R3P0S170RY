@@ -1,1 +1,65 @@
+Úloha 2
 
+EN: We have intercepted a ciphertext along with a presumed key exchange in plaintext. 
+Our sources informed us that the adversary is using a custom-made cipher they call "3AES".
+
+SK: Zachytili sme šifrovaný text spolu s predpokladanou výmenou kľúčov v čistom texte. 
+Naše zdroje nás informovali, že protivník používa vlastnoručne vyrobenú šifru, ktorú nazýva "3AES".
+
+
+Riešenie:
+Opäť je súčasťou úlohy txt súbor (intercept.txt), ktorý obsahuje:
+
+key1: h+NvKyaJFRhpn7lRWo0JGGcSk7TOd2ltibSSI1CGDCk=
+key2: CznIYU0rBgmzSb7WyqYfj+WKyDSXbbnsa8Wp/IRvUOc=
+key3: ihpLsXPURUTwH4ULO9/87rHRCQibQO6+V4/QKJL7Bgg=
+
+Y: rOkz0hogqrrjVXe8KhfwPmTXqy0NI5BaaVRwg8g4490Gi//XIIYY6t7pMpw/0DN4V26tcdwmmOOne75oEt4/oQ==
+X: t+WZSn6H1mA9XUQJrQ2xxt33nVh6orKFygb7Q+8xMe9JSk7XgMdZ8Fwq9rSMw9SuCZWoIJ8qYOSOKwmyyvMmW7/kkPDoWNEezfme08HmEWi3DrPAefIpNVVewbfVzt5j
+Y: dNMxxcWRHkxNxHu17gw5g5IE/Jf6tNmxw4OfBHEXfRv0cx4pKVKYjZofSRAgFspLnWcdR5GGasKxCgpOANPyS4liypMrPFKlXy/pm2BG7bM=
+X: k8JzsMNxiG5KPGSdM/YjGjW7y8dzgG8vsQ3RB062Kz1/EzwUaWz5Sr2UFNuq0jcWqDdj3Y9I0UKz0rYdZuTxMHZ+oKVEqI8Xv9CuvOmOzkdBoBgsjaWT9ke6+BPcMH9Kpwq/jgoYVQ7SfJDKx5GCAxzSLyyS6tXGIZRrUny6jiU=
+
+Túto úlohu som komplet spravil cez GPT, ktorá mi vygenerovala kód, ktorý toto mal dešifrovať. Problém bol ale ten, že aj napriek tomu to nešlo. 
+Musel som daný kód mierne upraviť a nakoniec som sa dostal k vlajke.
+
+from Crypto.Cipher import AES
+import base64
+
+# Funkcia na dekódovanie Base64 kľúča
+def decode_key(key_b64):
+    return base64.b64decode(key_b64)
+
+# Funkcia na dešifrovanie pomocou AES
+def decrypt_aes(data, key, mode=AES.MODE_ECB):
+    cipher = AES.new(key, mode)
+    return cipher.decrypt(data)
+
+# Funkcia na 3AES dešifrovanie (dešifrovanie - šifrovanie - dešifrovanie)
+def triple_aes_decrypt(data, key1, key2, key3):
+    # Dešifrovanie - Šifrovanie - Dešifrovanie
+    step1 = decrypt_aes(data, key3)  # 1. dešifrovanie s key3
+    step2 = encrypt_aes(step1, key2)  # 2. šifrovanie s key2
+    step3 = decrypt_aes(step2, key1)  # 3. dešifrovanie s key1
+    return step3
+
+# Funkcia na šifrovanie pomocou AES (používame to v dešifrovaní)
+def encrypt_aes(data, key, mode=AES.MODE_ECB):
+    cipher = AES.new(key, mode)
+    return cipher.encrypt(data)
+
+# Kľúče (predpokladáme, že sú Base64 zakódované)
+key1 = decode_key("h+NvKyaJFRhpn7lRWo0JGGcSk7TOd2ltibSSI1CGDCk=")
+key2 = decode_key("CznIYU0rBgmzSb7WyqYfj+WKyDSXbbnsa8Wp/IRvUOc=")
+key3 = decode_key("ihpLsXPURUTwH4ULO9/87rHRCQibQO6+V4/QKJL7Bgg=")
+
+# Pôvodné šifrované dáta (príklad)
+encrypted_data = base64.b64decode("t+WZSn6H1mA9XUQJrQ2xxt33nVh6orKFygb7Q+8xMe9JSk7XgMdZ8Fwq9rSMw9SuCZWoIJ8qYOSOKwmyyvMmW7/kkPDoWNEezfme08HmEWi3DrPAefIpNVVewbfVzt5j")
+
+# Dešifrovanie 3AES
+decrypted_data = triple_aes_decrypt(encrypted_data, key1, key2, key3)
+
+# Orezanie paddingu, ak je potrebné (pri AES sa často pridáva padding)
+padding = decrypted_data[-1]
+decrypted_data = decrypted_data[:-padding]
+
+print("Decrypted data:", decrypted_data.decode('utf-8'))
