@@ -1,1 +1,78 @@
+Úloha 1
 
+EN: You've been contacted by a movie production company that has been hit by ransomware. 
+They need your help recovering the script for the next episode of a long-awaited series. It's urgent—millions (and possibly billions) of impatient fans are waiting.
+
+SK: Boli ste kontaktovaní filmovou produkčnou spoločnosťou, ktorá bola zasiahnutá ransomware. 
+Potrebujú vašu pomoc pri obnove scenára pre nasledujúcu epizódu dlho očakávaného seriálu. Je to naliehavé—milióny (a možno miliardy) netrpezlivých fanúšikov čakajú.
+
+
+Riešenie:
+
+K dispozícií máme súbor recoverz_1.zip, ktorý obsahuje ďalšie súbory, jeden obsahuje kód ransomwéru. Súčasťou sú ešte dva zašifrované súbory ransomvérom.
+Ako na dešifrovanie, ak daný ransomvér používa XOR šifru s náhodne vygenerovaným 16-bajtovým kľúčom ?
+
+Máme k dispozícií zašifrovaný png súbor, kde viem, že štandartna PNG hlavicka ma definovaný začiatok prvých bajtov: "89 50 4E 47 0D 0A 1A 0A"
+
+Trebalo spravit XOR operaciu nad zasifrovanym PNG suborom:
+
+ChatGPT vyplul kod:
+# Let's read the encrypted PNG file in binary mode and inspect the first few bytes.
+file_path = "/mnt/data/slon.png.enc"
+
+# Read the first 32 bytes to analyze the header
+with open(file_path, "rb") as f:
+    encrypted_bytes = f.read(32)
+
+# Show the first bytes in hexadecimal
+encrypted_bytes.hex()
+
+Nasladne som získal začiatok kľúča:
+"83 82 D2 9E 05 59 CF 6F"
+
+Bolo treba ale získať ďalších 8 bajtov:
+
+Dočítal som sa, že hneď za štandartom PNG hlavičkz nasleduje vždy:
+    4 bajty – veľkosť chunku: 00 00 00 0D
+    4 bajty – názov chunku: 49 48 44 52 (teda ASCII IHDR)
+
+Nad nimi znovu spravit XOR: 
+
+21 ^ 00 = 21
+BE ^ 00 = BE
+0C ^ 00 = 0C
+BF ^ 0D = B2
+B0 ^ 49 = F9
+36 ^ 48 = 7E
+1D ^ 44 = 59
+07 ^ 52 = 55
+
+Nasledne som dostal celý kľúč:
+83 82 D2 9E 05 59 CF 6F 21 BE 0C B2 F9 7E 59 55
+
+Pomocou GPT som ziskal Python na desifrovanie
+# Cesty k súborom
+input_file = "slon.png.enc"
+output_file = "slon_decrypted.png"
+
+# XOR kľúč (16 bajtov)
+xor_key = bytes.fromhex("8382d29e0559cf6f21be0cb2f97e5955")
+
+# Načítanie zašifrovaného súboru
+with open(input_file, "rb") as f:
+    encrypted_data = f.read()
+
+# Dešifrovanie pomocou opakovaného XOR
+decrypted_data = bytes([
+    b ^ xor_key[i % len(xor_key)] for i, b in enumerate(encrypted_data)
+])
+
+# Zápis dešifrovaného obrázku
+with open(output_file, "wb") as f:
+    f.write(decrypted_data)
+
+print("Dešifrovanie hotové. Výstupný súbor:", output_file)
+
+
+FLAG:
+SK-CERT{7r1v14l_r4n50mw4r3_f0r_7h3_574r7}
