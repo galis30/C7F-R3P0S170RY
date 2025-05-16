@@ -1,1 +1,13 @@
+Uloha 2
 
+EN: Based on your findings, continue your analysis with the docker layer of the docker container.
+
+SK: Na základe predchádzajúcich zistené, pokračujte s analýzov súborov napadnutého kontajnera.
+
+
+Riešenie:
+Rozbalil som priložený súbor (part2_docker_layer.tar.gz)
+Z predchádzajúcej úlohy viem, že bol vytvorený priečinok var/data v ktorom by sa mal nachádzať keylogger.bin
+Ide o binárku tak skúšam na ňom spustiť najskôr príkaz strings
+Objavilo sa:
+=== LOG START SK-CERT{l34v3_17_70_7h3_pr05} ===
