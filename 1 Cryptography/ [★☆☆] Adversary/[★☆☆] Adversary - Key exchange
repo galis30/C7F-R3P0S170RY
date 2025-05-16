@@ -8,6 +8,7 @@ Prikladáme komunikáciu, kde podozrievame, že protivník môže dohodnúť kľ
 
 
 Riešenie:
+(messages.txt, exchange.png)
 
 Tak ako v predchádyajúcej úlohe aj tu pomohla GPT, kde bolo potrebné nastaviť akým spôsobom a čo má spraviť. Ak sa to nezadefinuje presne GPT má problém
 prísť na správne riešenie. Už si úplne presne napamätám všetkz kroky, ale vyriešil som to cez Python script:
