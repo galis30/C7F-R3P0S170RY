@@ -9,4 +9,95 @@ Prikladáme komunikáciu, kde podozrievame, že protivník môže dohodnúť kľ
 
 Riešenie:
 
+Tak ako v predchádyajúcej úlohe aj tu pomohla GPT, kde bolo potrebné nastaviť akým spôsobom a čo má spraviť. Ak sa to nezadefinuje presne GPT má problém
+prísť na správne riešenie. Už si úplne presne napamätám všetkz kroky, ale vyriešil som to cez Python script:
+(Prídu mi ale tieto úlohy dosť náročné, nakoľko sú to len 1 hviezdičkové úlohy...)
 
+import re
+from base64 import b64decode
+from Crypto.Cipher import AES
+
+# Pôvodné súbory
+with open("messages.txt", "r") as f:
+    content = f.read()
+
+# Výmena kľúčov – prvé 3 správy
+b64_msgs = re.findall(r"(?:X|Y): ([A-Za-z0-9+/=]+)", content)
+msg1 = b64decode(b64_msgs[0])
+msg2 = b64decode(b64_msgs[1])
+msg3 = b64decode(b64_msgs[2])
+
+print("[*] Načítané správy pre výmenu kľúčov (3 výmeny)")
+
+# XOR na získanie S2 a Key
+s2 = bytes(a ^ b for a, b in zip(msg1, msg2))
+key_shared = bytes(a ^ b for a, b in zip(msg3, s2))
+print(f"[*] Vypočítaný zdieľaný kľúč (hex): {key_shared.hex()}")
+
+# Rozparsujme nové kľúče z toho kľúča ako string
+key_text = key_shared.decode(errors="ignore")
+print("[*] Extrahovaný text z kľúča:")
+print(key_text)
+
+key_lines = key_text.split('\n')
+key_map = {}
+for line in key_lines:
+    if ':' in line:
+        k, v = line.split(':', 1)
+        key_map[k.strip()] = b64decode(v.strip())
+
+# Overenie
+for name, val in key_map.items():
+    print(f"  -> {name}: {val.hex()}")
+
+# Funkcia na 3AES dešifrovanie
+def decrypt_3aes(ciphertext, k1, k2, k3):
+    cipher3 = AES.new(k3, AES.MODE_ECB)
+    cipher2 = AES.new(k2, AES.MODE_ECB)
+    cipher1 = AES.new(k1, AES.MODE_ECB)
+    decrypted = cipher3.decrypt(ciphertext)
+    decrypted = cipher2.encrypt(decrypted)
+    decrypted = cipher1.decrypt(decrypted)
+    return decrypted
+
+# Zvyšné správy na dešifrovanie
+blocks = [b64decode(m) for m in b64_msgs[3:]]
+print(f"[*] Počet šifrovaných blokov po výmene: {len(blocks)}")
+
+# Dešifrujeme a zobrazujeme výstup priebežne
+from textwrap import shorten
+
+all_plaintext = b""
+for i, block in enumerate(blocks):
+    pt = decrypt_3aes(block, key_map['key1'], key_map['key2'], key_map['key3'])
+    all_plaintext += pt
+    preview = shorten(pt.decode(errors='ignore'), width=60, placeholder="...")
+    print(f"[+] Block {i+1}: {preview}")
+
+# Skúsime nájsť vlajku
+import re
+flag = re.search(rb'SK-CERT\{.*?\}', all_plaintext)
+if flag:
+    print(f"\n[🎉] Nájdená vlajka: {flag.group().decode()}")
+else:
+    print("\n[!] Vlajka sa nenašla v správe.")
+
+-----
+
+┌──(kali㉿kali)-[~/Desktop/CTF 2025/Decrypt]
+└─$ python3 test.py               
+[*] Načítané správy pre výmenu kľúčov (3 výmeny)
+[*] Vypočítaný zdieľaný kľúč (hex): 6b6579313a204f6d335465526a626e6e4778784e73336b2f3733615a584d5a576e654846395844313174496b6c67346b6b3d0a6b6579323a206b6c3432366477515363386c455a4e505279393473374d545a424864697963784c662f395368424b522b303d0a6b6579333a2065575977376f4238683436747a4e544a4548523735682f75725a39346535473149444743446b4f683053773d
+[*] Extrahovaný text z kľúča:
+key1: Om3TeRjbnnGxxNs3k/73aZXMZWneHF9XD11tIklg4kk=
+key2: kl426dwQSc8lEZNPRy94s7MTZBHdiycxLf/9ShBKR+0=
+key3: eWYw7oB8h46tzNTJEHR75h/urZ94e5G1IDGCDkOh0Sw=
+  -> key1: 3a6dd37918db9e71b1c4db3793fef76995cc6569de1c5f570f5d6d224960e249
+  -> key2: 925e36e9dc1049cf2511934f472f78b3b3136411dd8b27312dfffd4a104a47ed
+  -> key3: 796630ee807c878eadccd4c910747be61feead9f787b91b52031820e43a1d12c
+[*] Počet šifrovaných blokov po výmene: 3
+[+] Block 1: They were there again. Exchanging keys in the plaintext...
+[+] Block 2: Okay Mr. Robot. Since they've busted all our people I'll...
+[+] Block 3: Agreed. SK-CERT{d1ff13_h3llm4n_15_n07_7h47_51mpl3_l0l}
+
+[🎉] Nájdená vlajka: SK-CERT{d1ff13_h3llm4n_15_n07_7h47_51mpl3_l0l}
