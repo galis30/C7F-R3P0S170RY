@@ -6,6 +6,7 @@ SK: Preskúmajte zdrojový git repozitár pre nasadenie ssh servera a vyhľadajt
 
 
 Riešenie:
+Extrahovanie: part5_ssh-bastion-repo.tar.gz
 Úlohou je prehľadať git repozitár, ktorý sa však tvári, že tam nie je (je skrytý).
 
 ┌──(kali㉿kali)-[~/Downloads/ssh-bastion-repo]
