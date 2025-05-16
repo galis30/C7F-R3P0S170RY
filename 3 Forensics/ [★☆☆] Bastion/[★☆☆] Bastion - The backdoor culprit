@@ -1,0 +1,8 @@
+Uloha 5
+
+EN: Explore the source git repository for the bastion server docker deployment and look for the source of the dropped backdoor.
+
+SK: Preskúmajte zdrojový git repozitár pre nasadenie ssh servera a vyhľadajte pôvod nežiaduceho ssh kľúča.
+
+
+Riešenie:
