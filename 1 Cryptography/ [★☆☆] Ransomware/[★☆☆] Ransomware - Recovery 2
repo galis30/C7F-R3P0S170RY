@@ -1,1 +1,26 @@
+Úloha 2
 
+EN: The producer did not upgrade their infrastructure, and their servers were encrypted again. 
+The attackers used slightly modified malware, but it should not be too hard to decrypt.
+
+SK: Producent neaktualizoval svoju infraštruktúru a ich servery boli opäť zašifrované. 
+Útočníci použili mierne upravený malware, ale nemalo by to byť príliš ťažké dešifrovať.
+
+
+Riešenie:
+K dispozícií máme súbor recoverz_2.zip, ktorý obsahuje ďalšie súbory, jeden obsahuje kód ransomwéru. Súčasťou sú ešte dva zašifrované súbory ransomvérom.
+
+Tento ransomvér opäť vygeneruje 16-bajtový náhodný kľúč, ktorý sa neukladá nikam, čo znamená, že bez neho je dešifrovanie nemožné...
+
+Napadlo ma, že by to mohlo ísť rovnakým spôsobom ako v predchádzajúcej úlohe.
+
+Opäť som teda použil python, ktorý bol upravený na základe potreby pre daný ransomware.
+
+Vysledny text nebol však uplne čitatelný, ale dostal som sa k tomuto:
+SK,CERU{r0cj_5nd_l0r7x_4ev2n6ur34}
+
+Keďže viem, že vlajka má byť v podobe:
+SK-CERT{} a zvysok znakov naznacovalo ze moze ist o rick a morty dobrodruzstva, 
+tak som skusil upravit text aby to sedelo (stacilo poposuvat par znakov +1 / -1), následne som sa dostal k:
+
+SK-CERT{r1ck_4nd_m0r7y_4dv3n7ur35}
