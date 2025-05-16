@@ -1,1 +1,12 @@
+Úloha 3
+
+EN: The adversary started using a new algorithm for key exchange. We were able to get its schema from our source. 
+We attach the communication where we suspect the adversary might be agreeing upon a key and then using the 3AES encryption we've seen previously.
+
+SK: Protivník začal používať nový algoritmus na výmenu kľúčov. Podarilo sa nám získať jeho schému od nášho zdroja. 
+Prikladáme komunikáciu, kde podozrievame, že protivník môže dohodnúť kľúč a následne použiť 3AES šifrovanie, ktoré sme už predtým videli.
+
+
+Riešenie:
+
 
