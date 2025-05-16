@@ -7,7 +7,7 @@ SK: Producent neaktualizoval svoju infraštruktúru a ich servery boli opäť za
 Útočníci použili mierne upravený malware, ale nemalo by to byť príliš ťažké dešifrovať.
 
 
-Riešenie:
+Riešenie 1:
 K dispozícií máme súbor recoverz_2.zip, ktorý obsahuje ďalšie súbory, jeden obsahuje kód ransomwéru. Súčasťou sú ešte dva zašifrované súbory ransomvérom.
 
 Tento ransomvér opäť vygeneruje 16-bajtový náhodný kľúč, ktorý sa neukladá nikam, čo znamená, že bez neho je dešifrovanie nemožné...
@@ -24,3 +24,74 @@ SK-CERT{} a zvysok znakov naznacovalo ze moze ist o rick a morty dobrodruzstva,
 tak som skusil upravit text aby to sedelo (stacilo poposuvat par znakov +1 / -1), následne som sa dostal k:
 
 SK-CERT{r1ck_4nd_m0r7y_4dv3n7ur35}
+
+Riešenie 2:
+Je to už nejaká chvíla ale riešil som túto úlohu s odstupom času znovu, ale skúsil som iný spôsob riešenia. Nakoľko išlo o ten istý zašifrovaný obrázok, čo v 
+predchádzajúcej úlohe, napadlo ma, či nie je možné porovnaním týchto dvoch obrázkov získať kľúč šifrovania.
+Možné to bolo a text krásne preložilo bez potreby ďaľších úprav:
+
+
+
+
+
+Sireeehng!the!Rlopes of the Unknowable
+
+It all started with Rick waking up from a hangover inside a snow globe.
+“Morty, get the sledgehammer. I accidentally dimension-hopped into a Christmas ornament again.”
+
+Five smashed snowmen later, they stood in front of the portal gun.
+
+“Morty, we’re going skiing. But not just anywhere,” Rick slurred, calibrating the gun with one hand while pouring schnapps into his coffee with the other. “We’re going outside the Central Finite Curve.”
+
+Morty blinked. “Wait, what? Isn't that where all the non-Rick-dominated realities are?”
+
+“Exactly! Which means we might actually get decent ski lift service.”
+
+They portaled into a parallel universe ski resort called Slippery Realities, where the laws of physics were suggestions and snowflakes screamed as they fell.
+
+“W-what the hell is this place?” Morty yelled as he adjusted his ski goggles, which were alive and whispering ominous prophecies into his ears.
+
+Rick adjusted his skis, which were shaped like interdimensional fish. “This is Universe -∞.9b. Snow here is made of crystallized existential dread. It's primo for shredding.”
+
+As they hit the slopes, Rick started yelling, “Watch out for the Slope Moguls! They’re sentient!”
+
+Morty screamed as a mogul jumped at him, yelling “DO A TRICK OR DIE!”
+
+Halfway down the mountain, they hit a temporal avalanche. Time itself started rewinding. Rick turned into a baby. Morty turned into a failed tax auditor.
+
+“Rick! I can’t audit powder! I don’t even know what a W-2 is in this universe!”
+
+Rick, now a toddler with a lab coat diaper, screamed, “BABY RICK NEEDS A TIME NAP!”
+
+Thankfully, a sentient snowboard named Chad rescued them by doing a backflip so gnarly it temporarily restored local causality.
+
+At the bottom of the mountain was a ski lodge run by Nietzsche clones, where the hot chocolate tasted like despair and came with a complimentary crisis of identity.
+
+“We should go,” Morty muttered, sipping his drink while weeping softly.
+
+“Not until we beat the Downhill Boss,” Rick said, pointing to the ski hill’s final challenge: a 10,000-foot vertical drop guarded by a giant snow demon made of failed philosophies.
+
+Morty screamed.
+
+Rick screamed louder—but only because his marshmallow was too hot.
+
+They escaped by skiing off the edge of the universe itself, launching into the meta-dimensional void where gravity was negotiable and ski poles argued about Kantian ethics.
+
+Back home, covered in frost and trauma, Morty collapsed on the couch.
+
+“Rick… why?”
+
+Rick tossed him a t-shirt that read ‘I Skied Outside the Central Finite Curve and All I Got Was a Recursive Mental Breakdown’.
+
+“Because, Morty. Skiing inside the curve is for posers.”
+
+THE END.
+
+(Or is it? Time is still reversing in three universes. Sorry, Chad.)
+############################################################################################
+
+
+			SK-CERT{r1ck_4nd_m0r7y_4dv3n7ur35}	
+
+
+############################################################################################
