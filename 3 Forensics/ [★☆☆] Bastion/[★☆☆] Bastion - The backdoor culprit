@@ -6,3 +6,35 @@ SK: Preskúmajte zdrojový git repozitár pre nasadenie ssh servera a vyhľadajt
 
 
 Riešenie:
+Úlohou je prehľadať git repozitár, ktorý sa však tvári, že tam nie je (je skrytý).
+
+┌──(kali㉿kali)-[~/Downloads/ssh-bastion-repo]
+└─$ ls -la
+total 44
+drwxr-xr-x  3 kali kali 4096 Apr 19 09:05 .
+drwxr-xr-x 16 kali kali 4096 May 16 03:43 ..
+-rw-rw-r--  1 kali kali  164 Apr 19 09:05 docker-compose.yml
+-rw-r--r--  1 kali kali 1215 Apr 18 17:40 Dockerfile
+drwxr-xr-x  8 kali kali 4096 Apr 19 09:05 .git
+-rw-r--r--  1 kali kali   24 Apr 18 15:26 issue.admin
+-rw-r--r--  1 kali kali   42 Apr 18 15:26 issue.generic
+-rw-r--r--  1 kali kali   18 Apr 18 15:26 issue.ratchet
+-rw-r--r--  1 kali kali   66 Apr 18 15:29 motd
+-rw-rw-r--  1 kali kali  218 Apr 19 09:05 README.md
+-rw-r--r--  1 kali kali  233 Apr 18 15:31 sshd_config
+
+Pristúpil som k .git:
+Pomocou "git log --oneline --graph --all" som si zobrazil zoznam všetkých commitov
+
+┌──(kali㉿kali)-[~/Downloads/ssh-bastion-repo/.git]
+└─$ git log --oneline --graph --all
+
+* 434e557 (HEAD -> main) merge suggested changes from colleague
+| * a222654 (suggested_changes) update ssh keys SK-CERT{r09U3_3MPL0Y33_0r_5uPpLycH41n}
+|/  
+* fe00ee7 upgrade base image
+* 018ab72 harden user passwords
+* 3f9744d bastion deployment. initial commit
+
+Získal som poslednú vlajku z tejto sekcie úloh
+
