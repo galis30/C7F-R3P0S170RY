@@ -1,1 +1,32 @@
+Úloha 1
 
+EN: We've captured communication of two adversaries. We need to decrypt it.
+
+SK: Zachytili sme komunikáciu dvoch protivníkov. Potrebujeme ju dešifrovať.
+
+
+Riešenie:
+K dispozícií je txt súbor (communication.txt), ktorý obsahuje:
+
+X: Ovgh xlliwrmzgv gsv wilk klrmg.
+Y: Ztivvw yfg dv szev gl yv xzivufo. Lfi xibkgltizksvih dzimvw fh zylfg gsrh nvgslw. Gsvb hzb rg dlmg slow uli olmt.
+X: Dv wlmg szev grnv gl hvg fk zmbgsrmt yvggvi. Xlnv gl gsv fhfzo kozxv rm gsv Kvmgztlm, Hgzeyzihpz 42. Gsv yzigvmwvi droo trev blf gsv kzxpztv. 
+Y: Urmv yfg ru dv tvg xlnkilnrhvw yvxzfhv lu gsv xrksvi blf szev gl wlfyov blfi hgzpvh. HP-XVIG{szev_blf_vevi_svziw_zylfg_z_yolxp_xrksvi???}
+
+
+Ide o šifru typu Atbash, kde sa každé písmeno abecedy nahrádza „zrkadlovým“ písmenom podľa abecedy
+A <-> Z  
+B <-> Y  
+C <-> X  
+D <-> W  
+E <-> V 
+...
+
+Takto som postupoval pri všetkých písmenách a dostal som sa k:
+
+X: "Lets coordinate the drop point."
+Y: "Agreed but we have to be careful. Our cryptographers warned us about this method. They say it wont hold for long."
+X: "We dont have time to set up anything better. Come to the usual place in the Pentagon, Stavbarska 42. The bartender will give you the package."
+Y: "Fine but if we get compromised because of the cipher you have to double your stakes."
+
+SK-CERT{have_you_ever_heard_about_a_block_cipher???}
