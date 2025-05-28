@@ -1,0 +1,14 @@
+Uloha 2
+
+[★☆☆] The digital trail - The evidence 
+
+EN: We have gathered more information about the website. It seems like some time ago it contained malicious code.
+
+SK: Zozbierali sme viac informácií o webstránke. Zdá sa, že pred časom obsahovala škodlivý kód.
+
+
+Riešenie:
+
+Prehľadal som git hub, vedel som, že treba hľadať medzi commits ale nevedel som presne kde. Šiel som postupne spätne až som narazil na docs/static/js/analytics-enhanced.js
+(https://github.com/AlexMercer-dev/datashield-web/commit/ba1c8fd481d1978ed99e433933e9484e888dd1a6), kde som si všimol vymazaný súbor. Cez "Load Diff" mi ukazalo zmazanú časť. Na prvý pohľad bolo vidieť obfuscovaný kód.
+Následne v jednej zo sekcii bola v vlajka v poznámke.
